@@ -1,0 +1,46 @@
+﻿@model List<IPMS.Models.Activity>
+
+@{
+    ViewBag.Title = "IPMS - Activity";
+}
+
+<div class="main-box clearfix">
+    <div class="main-box-header clearfix">
+        <h2>Activity</h2>
+    </div>
+
+
+
+    <div class="main-box-body clearfix">
+        <table class="table">
+            <tbody>
+                @foreach (var activity in Model)
+                {
+                    <tr>
+                        <td class="text-center">
+                            @if (activity.ActivityType == "P")
+                            {
+                                <i class="fa fa-upload"></i>
+                            }
+                            @if (activity.ActivityType == "J")
+                            {
+                                <i class="fa fa-child"></i>
+                            }
+                            else if (activity.ActivityType == "R")
+                            {
+                                <i class="fa fa-bar-chart-o"></i>
+                            }
+                        </td>
+                        <td>
+                            @Html.Raw("<b>" + activity.ActivityDoneBy + "</b>")   @Html.Raw(activity.ActivityDescription)
+                        </td>
+                        <td style="color:#878787;">
+                            <i class="fa fa-clock-o"></i>
+                            @activity.ActivityDate.ToString("f")
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

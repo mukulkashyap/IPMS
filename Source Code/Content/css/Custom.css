@@ -1,0 +1,296 @@
+﻿
+/* Bolds the Grid Header.*/
+.k-grid th.k-header,
+.k-grid th.k-header .k-link {
+    font-weight: bold;
+}
+
+/* Overwrites the Kendo Table Css with Bootstrap Css*/
+.k-grid table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    background-color: transparent;
+    border-collapse: collapse;
+    border-spacing: 0;
+    box-sizing: border-box;
+    border-color: grey;
+    color: black;
+    display: table;
+}
+
+/* Overwrites the Kendo Header Css with Bootstrap Css*/
+.k-grid th.k-header, .k-grid th.k-header .k-link {
+    border-top: 0;
+    border: none;
+    /*text-transform: uppercase;*/
+    font-size: 0.95em;
+    vertical-align: bottom;
+    padding: 8px;
+    line-height: 1.428571429;
+    font-weight: bold;
+    background-color: white;
+    color: black;
+    font-family: 'Open Sans',sans-serif;
+}
+
+
+
+/*Overwrites the Kendo Data Tag with Bootstrap Css*/
+.k-grid td {
+    font-size: 0.875em;
+    vertical-align: middle;
+    border-top: 1px solid #e7ebee;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    padding: 12px 8px;
+    line-height: 1.428571429;
+    background-color: white;
+    font-family: 'Open Sans',sans-serif;
+}
+
+.k-header.k-grid-toolbar.k-grid-top {
+    font-size: 0.875em;
+    vertical-align: middle;
+    border-top: 1px solid #e7ebee;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    padding: 12px 8px;
+    line-height: 1.428571429;
+    background-color: white;
+    font-family: 'Open Sans',sans-serif;
+}
+
+.k-grouping-header {
+    /*text-transform: uppercase;*/
+    font-size: 0.95em;
+    vertical-align: bottom;
+    padding: 8px;
+    line-height: 1.428571429;
+    font-weight: bold;
+    background-color: white;
+    color: black;
+    font-family: 'Open Sans',sans-serif;
+}
+
+button.k-button.k-button-icontext.k-grid-excel {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.428571429;
+    border-radius: 3px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    color: #fff;
+    border:none;
+    border-bottom: 2px solid;
+    background-color: #03a9f4;
+    border-color: #2980b9;
+}
+button.k-button.k-button-icontext.k-grid-excel:hover, .btn:focus, .btn.focus
+{
+    background-color: #2980b9;
+    border-color: #1c5c87;
+}
+
+/*Overwrites Css of Widget with Bootstrap Css*/
+.k-widget, .k-block, .k-inline-block, .k-draghandle {
+    border: none;
+}
+
+/* Sets the Dimensions Of the Flag*/
+.CountryFlag {
+    width: 30px;
+    height: 18px;
+}
+
+/* Sets the Font Style for List View Elements*/
+.table tbody > tr > td:first-child {
+    font-size: 0.91em;
+    font-family: 'Open Sans',sans-serif;
+    color: black;
+    font-weight: bold;
+}
+
+.project-box .project-box-header .name a {
+    border-radius: 3px 3px 0 0;
+    background-clip: padding-box;
+    font-size: 1.1em;
+}
+
+div.tooltips {
+    position: relative;
+    display: block;
+}
+
+    div.tooltips div span.floated img {
+        width: 70px;
+        height: 70px;
+    }
+
+    div.tooltips img {
+        width: 40px;
+        height: 40px;
+        overflow: hidden;
+        position: relative;
+        float: left;
+    }
+
+    div.tooltips div {
+        position: absolute;
+        color: #909090;
+        background: #fff;
+        padding: 10px;
+        visibility: hidden;
+        border-radius: 4px;
+        top: -10px;
+        left: -350px;
+        min-width: 350px;
+        border: 1px solid #ccc;
+        width: auto;
+        height: auto;
+    }
+
+        div.tooltips div span.floated {
+            float: left;
+            margin-right: 10px;
+        }
+
+        div.tooltips div span.floated1 {
+            float: left;
+        }
+
+        div.tooltips div:after {
+            content: '';
+            position: absolute;
+            left: -12px;
+            top: 20%;
+            background: red;
+            width: 13px;
+            height: 26px;
+            background: url(../img/leftarrow.png) no-repeat;
+            z-index: 9999;
+        }
+
+    div.tooltips:hover div {
+        visibility: visible;
+        z-index: 999;
+    }
+
+
+#user-left-box img {
+    border-radius: 18%;
+    background-clip: padding-box;
+    /* stops bg color from leaking outside the border: */
+    border: 3px solid #fff;
+    float: left;
+    width: 80px;
+}
+
+#user-left-box .user-box {
+    color: #fff;
+    float: left;
+    padding-left: 1px;
+    padding-top: 18px;
+}
+
+/* Webkit ScrollBar Styles */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    background: rgba(3, 169, 244, 0.6);
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.8);
+}
+
+    ::-webkit-scrollbar-thumb:window-inactive {
+        background: rgba(3, 169, 244, 0.4);
+    }
+
+/*Google Translator UI Issue*/
+.goog-te-gadget-simple {
+    line-height: 26px;
+}
+
+
+/*CSS for Document Status */
+.StatusExpired {
+    color: #FF0000;
+    font-weight: bold;
+}
+
+.StatusExpiredSoon {
+    color: orange;
+    font-weight: bold;
+}
+
+.StatusExpiredLater {
+    color: green;
+    font-weight: bold;
+}
+
+.StatusExpirationNotSet {
+    color: black;
+    font-weight: bold;
+}
+
+/*_Right.cshtml to common css*/
+#myDiv {
+    height: 30px;
+    width: 30px;
+}
+
+    #myDiv img {
+        max-width: 100%;
+        max-height: 100%;
+        margin: auto;
+        display: block;
+        border-radius: 50%;
+    }
+
+
+
+li.submenu {
+    padding-left: 20px;
+}
+
+.dropdown-menu.notifications-list.messages-list img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+.k-date-display-grey {
+    color: #878787 !important;
+}
+
+/*CSS for body while opening Modal Popup */
+body.modal-open {
+    overflow: auto;
+}
+
+body {
+    padding-right: 0 !important;
+}
+/***************************************/

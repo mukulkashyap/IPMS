@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "IPMS - Patch List";
+}
+<div class="main-box clearfix">
+    <div class="main-box-header clearfix">
+        <h2>Patch List</h2>
+    </div>
+
+
+
+    <div class="main-box-body clearfix">
+
+        
+
+        
+            @(Html.Kendo().Grid<IPMS.Models.PatchDetails>()
+    .Name("PatchList")
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        
+        .Read(read => read.Action("GetPatchList", "PatchList").Type(HttpVerbs.Get))
+    )
+
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.Client).Title("Client");
+        columns.Bound(p => p.PatchMonth).Title("Month");
+        columns.Bound(p => p.PatchURL).Title("Patch URL").ClientTemplate("<a style=\"cursor:pointer;\" title=\"Patch URL\"  href=\"#= PatchURL #\" download>#= PatchURL #</a>");        
+        columns.Bound(p => p.PatchComment).Title("Comments");
+        columns.Bound(p => p.PatchCreatedTS).Title("Created On").Format("{0:MM/dd/yyyy}");
+    })
+    .ToolBar(tools => tools.Excel())
+    .Sortable()
+    .Groupable()
+    .Excel(excel => excel
+        .FileName("Patch List.xlsx")
+        .Filterable(true)
+        .AllPages(true)
+        .ProxyURL(Url.Action("Excel_Export_Save", "Report"))
+    )
+     .NoRecords(n => n.Template("No Patch found"))
+    .Reorderable(r => r.Columns(true))
+    .Resizable(r => r.Columns(true))
+
+    .Pageable(pageable => pageable
+            .Refresh(false)
+            .PageSizes(true)
+            .ButtonCount(5))
+            )
+        </div>
+    </div>

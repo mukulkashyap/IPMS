@@ -1,0 +1,201 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="IPMS.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %></title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+        <%: Styles.Render("~/Content/kendo/css")%>
+        <%: Styles.Render("~/bundles/custom/css")%>
+    </asp:PlaceHolder>
+    
+    <!-- google font libraries -->
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="~/content/css/libs/font-awesome.css" />
+
+</head>
+<body class="theme-whbl  pace-done fixed-header">
+
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="respond" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+        <%: Scripts.Render("~/bundles/custom/js") %>
+
+
+        <div id="theme-wrapper">
+            <header class="navbar" id="header-navbar">
+                <div class="container">
+                    <a id="logo" class="navbar-brand">
+                        <img src="../Content/img/logo.png" alt="" class="normal-logo logo-white" />
+                        <img src="../Content/img/logo-black.png" alt="" class="normal-logo logo-black" />
+                        <img src="../Content/img/logo-small.png" alt="" class="small-logo hidden-xs hidden-sm hidden" />
+                    </a>
+
+                    <div class="clearfix">
+                        <button class="navbar-toggle" data-target=".navbar-ex1-collapse" data-toggle="collapse" type="button">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="fa fa-bars"></span>
+                        </button>
+
+                        <div class="nav-no-collapse navbar-left pull-left hidden-sm hidden-xs">
+                            <ul class="nav navbar-nav pull-left">
+                                <li>
+                                    <a class="btn" id="make-small-nav">
+                                        <i class="fa fa-bars"></i>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+
+                        <div class="nav-no-collapse pull-right" id="header-nav">
+                            <ul class="nav navbar-nav pull-right">
+
+                                <li class="dropdown profile-dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <img src="<%=GetImageURl() %>"" alt="" />
+                                        <span class="hidden-xs"> <%=GetLoggedInUserName() %></span> <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li><a href="../Home/UserDetail"><i class="fa fa-user"></i>Profile</a></li>
+                                        <li><a href="../Login/Logout"><i class="fa fa-power-off"></i>Logout</a></li>
+                                    </ul>
+                                </li>
+                                <li class="hidden-xxs">
+                                    <a class="btn" href="../Login/Logout">
+                                        <i class="fa fa-power-off"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+
+        <!-- Left Menu -->
+
+        <div id="page-wrapper" class="container">
+            <div class="row">
+                <div id="nav-col">
+                    <section id="col-left" class="col-left-nano">
+                        <div id="col-left-inner" class="col-left-nano-content">
+                            <div id="user-left-box" class="clearfix hidden-sm hidden-xs dropdown profile2-dropdown">
+                                <img alt="" src="<%=GetImageURl() %>" />
+                                <div class="user-box">
+                                    <span class="name">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            <%=GetLoggedInUserName() %>		                                          
+                                       </a>
+                                    </span>
+
+                                </div>
+                            </div>
+                            <div class="collapse navbar-collapse navbar-ex1-collapse" id="sidebar-nav">
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li class="nav-header nav-header-first hidden-sm hidden-xs">Navigation
+                                    </li>
+                                    <li>
+                                        <a href="../Activity/Activity">
+                                            <i class="fa fa-dashboard"></i>
+                                            <span>Activity</span>
+
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="dropdown-toggle">
+                                            <i class="fa fa-bar-chart-o"></i>
+                                            <span>Reports</span>
+                                            <i class="fa fa-angle-right drop-icon"></i>
+                                        </a>
+                                        <ul class="submenu">
+                                            <li>
+                                                <a href="../Report/ClientWise">Client Related
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="../Report/DateWise">Date Related
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <% if (GetUserType() =="W"){%>
+                                    <li>
+                                        <a href="../Home/CreatePatch">
+                                            <i class="fa fa-table"></i>
+                                            <span>Upload Patch</span>
+
+                                        </a>
+                                    <% }%> 
+                                    </li>
+
+                                     <li>
+                                        <a href="../PatchList/PatchList">
+                                            <i class="fa fa-th-large"></i>
+                                            <span>Patch List</span>
+
+                                        </a>
+
+                                    </li>
+
+
+
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+
+            <!-- Main Content Of The Page  -->
+            <div id="content-wrapper">
+                <div class="row">
+                    <div>
+                        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                </div>
+                <!-- Footer Area-->
+                <footer id="footer-bar" class="row">
+                    <div class="container">
+                        <div class="col-xs-9">
+                            <p id="footer-copyright" class="col-xs-9">
+                                Copyright © 1999 - <%:DateTime.Now.Year%> INSZoom.com,Inc. All rights reserved
+                            </p>
+                        </div>
+                    </div>
+                </footer>
+
+            </div>
+        </div>
+    </form>
+</body>
+</html>

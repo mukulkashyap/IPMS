@@ -1,0 +1,171 @@
+﻿@model IPMS.Models.PatchDetails
+
+@{
+    ViewBag.Title = "IPMS - Date Wise Patch Details";
+}
+
+
+
+<div class="main-box clearfix">
+    <div class="main-box-header clearfix">
+        <h2>Date Wise Patch Details</h2>
+    </div>
+
+
+
+    <div class="main-box-body clearfix">
+
+        <form class="form-horizontal" role="form" id="formReport">
+
+            <div class="row">
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-4" style="padding-bottom: 0.5%;">
+                    <div class="form-group">
+                        <label for="DropDownClient">Client</label><span style="color: red"> *</span>
+                        @Html.DropDownList("DropDownClient", (SelectList)ViewBag.Clients, "Select Client", new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-md-4">
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-4" style="padding-bottom: 0.5%;">
+                    <div class="form-group">
+                        <label for="DropDownDependency">From Date </label><span style="color: red"> *</span>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            <input type="text" class="form-control" id="FromDate" name="FromDate">                 
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-4" style="padding-bottom: 0.5%;">
+                    <div class="form-group">
+                        <label for="DropDownDependency">To Date </label><span style="color: red"> *</span>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            <input type="text" class="form-control" id="ToDate" name="ToDate">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-4" style="padding-bottom: 0.5%;">
+                    <button class="btn btn-primary" type="submit">Get Report</button>
+                </div>
+                <div class="col-md-4">
+                </div>
+            </div>
+        </form>
+
+        <div id="report-results" style="display:none">
+            @(Html.Kendo().Grid<IPMS.Models.PatchDetails>()
+    .Name("Report")
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .ServerOperation(false)
+        .Read(read => read.Action("DateWiseList", "Report").Type(HttpVerbs.Get))
+    )
+
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.Client).Title("Client");
+        columns.Bound(p => p.PatchMonth).Title("Month");
+        columns.Bound(p => p.PatchURL).Title("Patch URL").ClientTemplate("<a style=\"cursor:pointer;\" title=\"Patch URL\"  href=\"#= PatchURL #\" download>#= PatchURL #</a>");        
+        columns.Bound(p => p.PatchComment).Title("Comments");
+        columns.Bound(p => p.PatchCreatedTS).Title("Created On").Format("{0:MM/dd/yyyy}");
+    })
+    .ToolBar(tools => tools.Excel())
+    .Sortable()
+    .Groupable()
+    .Excel(excel => excel
+        .FileName("Client Wise Patch Details.xlsx")
+        .Filterable(true)
+        .AllPages(true)
+        .ProxyURL(Url.Action("Excel_Export_Save", "Report"))
+    )
+     .NoRecords(n => n.Template("No Patch Details for the input criteria"))
+    .Reorderable(r => r.Columns(true))
+    .Resizable(r => r.Columns(true))
+
+    .Pageable(pageable => pageable
+            .Refresh(false)
+            .PageSizes(true)
+            .ButtonCount(5))
+            )
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+
+        //datepicker
+        $('#FromDate').datepicker({
+            format: 'mm/dd/yyyy'
+        });
+
+        //datepicker
+        $('#ToDate').datepicker({
+            format: 'mm/dd/yyyy'
+        });
+
+        $('#FromDate').on('changeDate', function (ev) {
+            $(this).datepicker('hide');
+            $(".popover.right.error-popover").hide();
+        });
+
+        $('#ToDate').on('changeDate', function (ev) {
+            $(this).datepicker('hide');
+            $(".popover.right.error-popover").hide();
+        });
+
+
+        $("#formReport").validate_popover({
+            popoverPosition: 'right',
+            rules: {
+                DropDownClient: "required",
+                FromDate: "required",
+                ToDate: "required"
+            },
+            messages: {
+                DropDownClient: "Please Select Client",
+                FromDate: "Please Choose From Date",
+                ToDate: "Please Choose To Date"
+            },
+
+            submitHandler: function (form) {
+                GetReport();
+            }
+        });
+    });
+
+    
+    function GetReport() {
+        var client = $("#DropDownClient").val();     
+        var fromDate = $("#FromDate").val();      
+        var toDate = $("#ToDate").val();
+       
+        $("#report-results").show();
+
+        $('#Report').data('kendoGrid').dataSource.read({ client: client, fromDate: fromDate,toDate:toDate });
+        return true;
+    }
+
+</script>
